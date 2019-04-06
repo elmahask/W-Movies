@@ -115,7 +115,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
                         self.movie.trailer.key.append(item["key"] as! String)
                         self.movie.trailer.name.append(item["name"] as! String)
                         //self.movie.trailer.append([item["name"] as! String])
-                        //self.movieList.append(item["key"] as! String)
+                       
                         self.tabelView?.reloadData()
                     }
                 }
