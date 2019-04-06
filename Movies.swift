@@ -6,10 +6,6 @@
 //  Copyright © 1440 AH jets. All rights reserved.
 //
 
-let APIKey = "2f118a45da8d4c15298e63cbc09bce5a"
-let APIURLPrefix = "https://api.themoviedb.org/3"
-let imageURLPrefix = "https://image.tmdb.org/t/p"
-
 import Foundation
 
 

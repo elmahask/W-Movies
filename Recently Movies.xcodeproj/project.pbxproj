@@ -11,6 +11,7 @@
 		CC0322142257A3D300BB5682 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0322122257A3D300BB5682 /* Alamofire.framework */; };
 		CC0322152257A3D300BB5682 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0322132257A3D300BB5682 /* SDWebImage.framework */; };
 		CC23810C2257BB99007B46BB /* CoreDataCRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23810B2257BB99007B46BB /* CoreDataCRUD.swift */; };
+		CC756DE0225934DC0083D109 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC756DDF225934DC0083D109 /* Constants.swift */; };
 		CC7EBB95224E9A7400B7ACC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EBB94224E9A7400B7ACC5 /* AppDelegate.swift */; };
 		CC7EBB97224E9A7400B7ACC5 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EBB96224E9A7400B7ACC5 /* DetailsViewController.swift */; };
 		CC7EBB9A224E9A7400B7ACC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC7EBB98224E9A7400B7ACC5 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		CC0322122257A3D300BB5682 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recently_Movies-cbjcofluifzqpoahqywvtbwnhret/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CC0322132257A3D300BB5682 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../Library/Developer/Xcode/DerivedData/Recently_Movies-cbjcofluifzqpoahqywvtbwnhret/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		CC23810B2257BB99007B46BB /* CoreDataCRUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCRUD.swift; sourceTree = "<group>"; };
+		CC756DDF225934DC0083D109 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC7EBB91224E9A7400B7ACC5 /* Recently Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recently Movies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7EBB94224E9A7400B7ACC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC7EBB96224E9A7400B7ACC5 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				CC7EBBB2224EAFD600B7ACC5 /* Movies.swift */,
 				CC23810B2257BB99007B46BB /* CoreDataCRUD.swift */,
+				CC756DDF225934DC0083D109 /* Constants.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -304,6 +307,7 @@
 				CC23810C2257BB99007B46BB /* CoreDataCRUD.swift in Sources */,
 				CC7EBBAF224EAE7700B7ACC5 /* FavoritesTableViewController.swift in Sources */,
 				CC7EBBAD224EADF400B7ACC5 /* MoviesTableViewController.swift in Sources */,
+				CC756DE0225934DC0083D109 /* Constants.swift in Sources */,
 				CC7EBB95224E9A7400B7ACC5 /* AppDelegate.swift in Sources */,
 				CC7EBBBE224EDA4C00B7ACC5 /* CustomCollectionViewCell.swift in Sources */,
 			);
