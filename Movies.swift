@@ -18,11 +18,29 @@ class Movie : NSObject {
     var rating : Float = 0
     var popularity : Float = 0
     var releaseYear : String = ""
+    var movieReviews : [MovieReview]=[]
+    var movieTraillers : [MovieTrailler]=[]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     struct Trailler {
         var key : Array<String> = []
         var name : Array<String> = []
     }
+    
     struct Review{
         var author : String = ""
         var content : String = ""

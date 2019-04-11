@@ -2,4 +2,69 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Constants.swift"
+            timestampString = "576682932.1940809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "Constants"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Recently_Movies.Constants.PAGE_NUMBER.unsafeMutableAddressor : Swift.String"
+                  moduleName = "Recently Movies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jets/Desktop/Recently%20Movies/Constants.swift"
+                  timestampString = "576687215.5822279"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Recently_Movies.Constants.PAGE_NUMBER.getter : Swift.String"
+                  moduleName = "Recently Movies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jets/Desktop/Recently%20Movies/Constants.swift"
+                  timestampString = "576687215.591863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Recently_Movies.Constants.PAGE_NUMBER.setter : Swift.String"
+                  moduleName = "Recently Movies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jets/Desktop/Recently%20Movies/Constants.swift"
+                  timestampString = "576687215.602999"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "90">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

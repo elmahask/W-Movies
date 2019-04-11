@@ -3,12 +3,14 @@
     <entity name="MovieEntity" representedClassName="MovieEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="movieReviews" optional="YES" attributeType="Transformable" customClassName="[MovieReview]" syncable="YES"/>
+        <attribute name="movieTraillers" optional="YES" attributeType="Transformable" customClassName="[MovieTrailler]" syncable="YES"/>
         <attribute name="overView" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="releaseYear" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MovieEntity" positionX="-117" positionY="-162" width="128" height="135"/>
+        <element name="MovieEntity" positionX="-117" positionY="-162" width="128" height="165"/>
     </elements>
 </model>

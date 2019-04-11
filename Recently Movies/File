@@ -1,0 +1,59 @@
+
+//        if(flag){
+//            movieList = movieList.sorted(by: { (Float($0.popularity) ) > (Float($1.popularity) )
+//            })
+//            let image = UIImage(named: "sortDes25") as UIImage?
+//            changeButton.setBackgroundImage(image, for: .normal, barMetrics: .default)
+////            for obj in movieList {
+////                print("Sorted popularity: \(obj.popularity)")
+////            }
+//            self.collectionView?.reloadData()
+//            flag = false
+//            //print(flag)
+//        }else{
+//            let image = UIImage(named: "sortAes25") as UIImage?
+//            changeButton.setBackgroundImage(image, for: .normal, barMetrics: .default)
+//            movieList = movieList.sorted(by: { (Float($0.rating) ) > (Float($1.rating) )
+//            })
+//            //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "remove", style: .plain, target: self, action:nil)
+////            for objs in movieList {
+////                print("Sorted popularity: \(objs.rating)")
+////            }
+//            self.collectionView?.reloadData()
+//            flag = true
+////            print(flag)
+//        }
+
+
+
+
+***********************************
+//DispatchQueue.main.async {
+//            Alamofire.request(Constants.URL_DISCOVER).responseJSON { (response) in
+//                if let responseValue = response.result.value as! [String: Any]? {
+//                    self.responseJson = responseValue["results"] as! [[String: Any]]
+//                    for item in self.responseJson{
+//                        let movie : Movie! = Movie()
+//                        movie.id = item["id"] as? Int
+////                        print(movie.id ?? 0000)
+//                        movie.title = (item["title"] as! String)
+//                        movie.overView = item["overview"] as! String
+//                        movie.rating = (item["vote_average"] as! Float)
+//                        movie.popularity = item["popularity"] as! Float
+//                        movie.releaseYear = item["release_date"] as! String
+//                        movie.image = Constants.URL_MAIN_IMAGE + String(describing: item["poster_path"]!)
+////                        print(movie.image)
+//                        self.movieList.append(movie)
+//
+//                        self.collectionView?.reloadData()
+//                    }
+//                }
+//            }
+
+//self.collectionView?.reloadData()
+//}
+
+
+
+
+

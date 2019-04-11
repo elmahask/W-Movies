@@ -34,6 +34,11 @@ class CoreDataCRUD {
         
         movieEntity.setValue(movie.rating, forKey: "rating")
         
+        movieEntity.setValue(movie.movieReviews, forKey: "movieReviews")
+        
+        movieEntity.setValue(movie.movieTraillers, forKey: "movieTraillers")
+        
+        
         do{
             try managedContext?.save()
             print ("data saved")
@@ -44,33 +49,48 @@ class CoreDataCRUD {
     }
 
     
-    func getFavouriteMovies() ->Array<NSManagedObject>
+    func getFavouriteMovies() ->Array<Movie>
     {
         
         managedContext = myDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
-        let sortDescriptor = NSSortDescriptor(key: "rating", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        var movies:Array<NSManagedObject>!
+//        let sortDescriptor = NSSortDescriptor(key: "rating", ascending: false)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+        //var movies:Array<NSManagedObject>!
+        var movieList:[Movie] = []
         do{
-            movies = try managedContext?.fetch(fetchRequest)
-            return movies
+            
+            let movies = try managedContext?.fetch(fetchRequest)
+            //var movie : Movie!
+            for data in movies!{
+                let movie = Movie()
+                movie.id =  data.value(forKey: "id") as? Int
+                movie.image = (data.value(forKey: "image") as? String)!
+                movie.title = (data.value(forKey: "title")as? String)!
+                movie.overView = (data.value(forKey: "overView") as? String)!
+                movie.rating = (data.value(forKey: "rating") as? Float)!
+                movie.releaseYear = data.value(forKey: "releaseYear") as! String
+                movie.movieReviews = (data.value(forKey: "movieReviews") as? [MovieReview])!
+                movie.movieTraillers = (data.value(forKey: "movieTraillers") as? [MovieTrailler])!
+                movieList.append(movie)
+            }
+            return movieList
         }
         catch let error as NSError{
             print(error.userInfo);
-            return movies
+            return movieList
         }
     }
 
     
     
-    func deleteData(movie:MovieEntity){
+    func deleteData(movieId:Int){
 
         managedContext = myDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieEntity")
         
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "\(movie.id)")
+        fetchRequest.predicate = NSPredicate(format: "id = %d", movieId)
         do
         {
             let test = try managedContext?.fetch(fetchRequest)
@@ -95,4 +115,25 @@ class CoreDataCRUD {
             print("Could not save \(error), \(error.userInfo)")
         }
     }
+    
+    func isExist(id:Movie)->Bool
+    {
+        let myDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = myDelegate.persistentContainer.viewContext
+        var movies:Array<NSManagedObject>!
+            let fechRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+            print("id =\(id.id!)")
+            fechRequest.predicate = NSPredicate(format: "id = %d", id.id!)
+            
+            do{
+                movies = try managedContext.fetch(fechRequest)
+                //return movies.count > 0
+            }catch let error as NSError{
+                print("error code : \(error.code)")
+            }
+        
+        return movies.count > 0
+    }
+    
+    
 }

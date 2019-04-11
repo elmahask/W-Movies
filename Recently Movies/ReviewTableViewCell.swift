@@ -1,26 +1,28 @@
 //
-//  CustomTableViewCell.swift
+//  ReviewTableViewCell.swift
 //  Recently Movies
 //
-//  Created by jets on 7/22/1440 AH.
+//  Created by jets on 8/3/1440 AH.
 //  Copyright © 1440 AH jets. All rights reserved.
 //
 
 import UIKit
 
-class CustomMoviesViewCell: UITableViewCell {
+class ReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var viewImage: UIImageView!
-    @IBOutlet weak var viewTitle: UILabel!
-    @IBOutlet weak var viewRating: UILabel!
-    @IBOutlet weak var viewReleaseYear: UILabel!
+    
+    @IBOutlet weak var viewName: UILabel!
+    @IBOutlet weak var viewReview: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
 
 }
