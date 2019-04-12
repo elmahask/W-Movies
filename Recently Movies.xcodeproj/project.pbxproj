@@ -31,7 +31,6 @@
 		CC7EBBBC224ED8CA00B7ACC5 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EBBBB224ED8CA00B7ACC5 /* GridViewController.swift */; };
 		CC7EBBBE224EDA4C00B7ACC5 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EBBBD224EDA4C00B7ACC5 /* CustomCollectionViewCell.swift */; };
 		CC7EBBC0224EE6C300B7ACC5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EBBBF224EE6C300B7ACC5 /* SplashViewController.swift */; };
-		CCEB389A2259D59B0046D28B /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEB38992259D59B0046D28B /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +62,6 @@
 		CC7EBBBB224ED8CA00B7ACC5 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		CC7EBBBD224EDA4C00B7ACC5 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC7EBBBF224EE6C300B7ACC5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		CCEB38992259D59B0046D28B /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +149,6 @@
 				CC7EBB96224E9A7400B7ACC5 /* DetailsViewController.swift */,
 				CC7EBBAE224EAE7700B7ACC5 /* FavoritesTableViewController.swift */,
 				CC7EBBBF224EE6C300B7ACC5 /* SplashViewController.swift */,
-				CCEB38992259D59B0046D28B /* MovieDetailsViewController.swift */,
 				CC779EF3225B903E001D64A9 /* ReviewViewController.swift */,
 			);
 			name = Controllers;
@@ -304,7 +301,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCEB389A2259D59B0046D28B /* MovieDetailsViewController.swift in Sources */,
 				CC7EBBB3224EAFD600B7ACC5 /* Movies.swift in Sources */,
 				CC7EBB97224E9A7400B7ACC5 /* DetailsViewController.swift in Sources */,
 				CC7EBBB9224EBA1000B7ACC5 /* CheckInternet.swift in Sources */,

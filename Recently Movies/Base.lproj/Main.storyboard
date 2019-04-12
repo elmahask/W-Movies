@@ -14,7 +14,7 @@
         <scene sceneID="SCH-6g-2Ku">
             <objects>
                 <collectionViewController storyboardIdentifier="GridVC" id="O5F-Gq-kj5" customClass="GridViewController" customModule="Recently_Movies" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" dataMode="prototypes" id="4so-P2-ovj">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" id="4so-P2-ovj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -198,11 +198,11 @@
                                                         <rect key="frame" x="0.0" y="28" width="398" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hiN-LI-BBY" id="mfY-aE-4Li">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="43.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0rw-v4-WRV">
-                                                                    <rect key="frame" x="15" y="0.0" width="368" height="43.666666666666664"/>
+                                                                    <rect key="frame" x="15" y="0.0" width="368" height="43"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -281,7 +281,7 @@
                         <barButtonItem key="rightBarButtonItem" image="Star" id="qhT-tY-VaF">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="addFavorite:" destination="B2U-ew-tYF" id="eZf-KF-fgn"/>
+                                <action selector="btnAddFavorite:" destination="B2U-ew-tYF" id="V9R-ph-jql"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -312,7 +312,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hFk-rN-BuQ" id="93A-KN-gSG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="168"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="167"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Loading Data" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-dz-2b1">
@@ -421,7 +421,7 @@
                                 <rect key="frame" x="0.0" y="72" width="414" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ihX-OC-o88" id="Qax-Mr-FK4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa2-9Q-aYB">

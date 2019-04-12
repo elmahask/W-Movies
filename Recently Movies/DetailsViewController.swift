@@ -14,49 +14,52 @@ import CoreData
 class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     var movie : Movie!
+    //var movieList:Movie!
     
-    var movieList:[MovieEntity] = []
+    var trailler : [MovieTrailler]=[]
+    var review : MovieReview?
+    var reviewList : [MovieReview] = []
     
     var responseJson:[[String: Any]]=[]
-    
+    var reviewJson:[[String: Any]]=[]
     var managedContext : NSManagedObjectContext!
+    let coreData : CoreDataCRUD = CoreDataCRUD()
     
+    var isExist : Bool = false;
+    
+    @IBOutlet weak var changeFavorite: UIBarButtonItem!
     @IBOutlet weak var tabelView: UITableView!
     @IBOutlet weak var imagePoster: UIImageView!
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var viewRating: UILabel!
     @IBOutlet weak var viewOverView: UITextView!
     @IBOutlet weak var viewYear: UILabel!
-   
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        if(isExist){
+            let image = UIImage(named: "Star-Fill")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+            changeFavorite.image = image
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(movie != nil){
-            
-            imagePoster.sd_setImage(with: URL(string:movie.image), placeholderImage: UIImage(named: "placeholder.png"))
-            
-            viewTitle.text = movie.title
-            
-            viewOverView.text = movie.overView
-            
-            viewRating.text = "Rating : ".appending(String(describing: movie.rating))
-            
-            viewYear.text = "Relearse Year : ".appending(String(describing: movie.releaseYear))
-            
-            Constants.MOVIE_ID = String(describing: movie.id!)
-            
-            DispatchQueue.main.async {
-                self.getTraillers(videoID: Constants.MOVIE_ID)
-                self.getReviews(videoID: Constants.MOVIE_ID)
-            }
-            
-        }else{
-            imagePoster.sd_setImage(with: URL(string:movieList[0].image!), placeholderImage: UIImage(named: "placeholder.png"))
-            viewTitle.text = movieList[0].title
-            viewOverView.text = movieList[0].overView
-            viewRating.text = "Rating : ".appending(String(describing: movieList[0].rating))
-            viewYear.text = "Relearse Year : ".appending(String(describing: movieList[0].releaseYear))
+        isExist = coreData.isExist(id: movie)
+        
+        imagePoster.sd_setImage(with: URL(string:movie.image), placeholderImage: UIImage(named: "placeholder.png"))
+        viewTitle.text = movie.title
+        viewOverView.text = movie.overView
+        viewRating.text = "Rating : ".appending(String(describing: movie.rating))
+        viewYear.text = "Relearse Year : ".appending(String(describing: movie.releaseYear))
+        Constants.MOVIE_ID = String(describing: movie.id!)
+        
+        DispatchQueue.main.async {
+            self.getTraillers()
+            self.getReviews()
         }
+
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,7 +68,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.movie != nil{
-            return self.movie.trailer.key.count
+            return movie.movieTraillers.count
         }
         else{
             return 0
@@ -73,26 +76,42 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     
-    @IBAction func btnAddFavorite(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Are You Want to add to Favorite?", message: nil, preferredStyle: .alert)
+    @IBAction func btnAddFavorite(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you want to complete this action?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
-            let coreData:CoreDataCRUD = CoreDataCRUD()
-            coreData.addTOFavourite(movie: self.movie)
+            if(self.coreData.isExist(id: self.movie)){
+                let image = UIImage(named: "Star")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+                self.changeFavorite.image = image
+                self.coreData.deleteData(movieId: self.movie.id!);
+            }
+            else{
+                self.coreData.addTOFavourite(movie: self.movie)
+                let image = UIImage(named: "Star-Fill")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+                self.changeFavorite.image = image
+            }
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
+    @IBAction func viewReviews(_ sender: Any) {
+        let reviewsView : ReviewViewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsVCID") as! ReviewViewController
+        reviewsView.reviewList = reviewList;
+        self.navigationController?.pushViewController(reviewsView, animated: true);
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = movie.trailer.name[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TraillerCell", for: indexPath)
+        cell.textLabel?.text = movie.movieTraillers[indexPath.row].name
+        print(movie.movieTraillers[indexPath.row].name ?? 0)
         cell.imageView?.sd_setImage(with: URL(string:""), placeholderImage: UIImage(named: "play-48"))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Constants.TRAILLER_KEY = movie.trailer.key[indexPath.row]
+        Constants.TRAILLER_KEY = (movie.movieTraillers[indexPath.row].key)!
         
         let YOUTUBE = NSURL(string:Constants.URL_YOUTUBE)
         
@@ -103,37 +122,40 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
     }
     
-    func getTraillers(videoID:String){
+    func getTraillers(){
         Alamofire.request(Constants.URL_MOVIES).responseJSON { (response) in
             if let responseValue = response.result.value as! [String: Any]? {
                 self.responseJson = responseValue["results"] as! [[String: Any]]
                 for item in self.responseJson{
-                    
-                    self.movie.trailer.key.append(item["key"] as! String)
-                    self.movie.trailer.name.append(item["name"] as! String)
-                    
-                    self.tabelView?.reloadData()
+                    let trailler : MovieTrailler = MovieTrailler()
+                    trailler.key = item["key"] as? String
+                    trailler.name = item["name"] as? String
+                    self.movie.movieTraillers.append(trailler)
+                    self.trailler.append(trailler)
+                    print(self.movie.movieTraillers.count)
                 }
+                self.tabelView?.reloadData()
             }
         }
-        
-        
     }
     
-    func getReviews(videoID:String){
+
+    
+    func getReviews(){
         Alamofire.request(Constants.URL_REVIEWS).responseJSON { (response) in
             if let responseValue = response.result.value as! [String: Any]? {
-                self.responseJson = responseValue["results"] as! [[String: Any]]
-                for item in self.responseJson{
-                    
-                    self.movie.review.id.append(item["id"] as! String)
-                    self.movie.review.author.append(item["author"] as! String)
-                    self.movie.review.content.append(item["content"] as! String)
-                    
-                    self.tabelView?.reloadData()
+                self.reviewJson = responseValue["results"] as! [[String: Any]]
+                for item in self.reviewJson{
+                    let review : MovieReview = MovieReview()
+                    review.id = item["id"] as? String
+                    review.author = item["author"] as? String
+                    review.content = item["content"] as? String
+                    self.movie.movieReviews.append(review)
+                    self.reviewList.append(review)
                 }
             }
         }
     }
+
 }
 
