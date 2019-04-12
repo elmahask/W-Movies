@@ -57,16 +57,16 @@ class GridViewController: UICollectionViewController {
             
             case .discover:
                 movieList.removeAll()
-                fetchJson(typeURL: Constants.URL_DISCOVER+Constants.PAGE_NUMBER)
+                fetchJson(typeURL: Constants.URL_DISCOVER)
                 print(Constants.URL_DISCOVER)
             
             case .popular:
                 movieList.removeAll()
-                fetchJson(typeURL: Constants.URL_POPULAR+Constants.PAGE_NUMBER)
+                fetchJson(typeURL: Constants.URL_POPULAR)
             
             case .topRate:
                 movieList.removeAll()
-                fetchJson(typeURL: Constants.URL_TOP_RATED+Constants.PAGE_NUMBER)
+                fetchJson(typeURL: Constants.URL_TOP_RATED)
         }
     }
     
@@ -106,7 +106,7 @@ class GridViewController: UICollectionViewController {
             page += 1;
             Constants.PAGE_NUMBER = String(page)
             //if Connectivity.isConnectedToInternet(){
-                fetchJson(typeURL:Constants.URL_DISCOVER+Constants.PAGE_NUMBER)
+                fetchJson(typeURL:Constants.URL_DISCOVER)
             //}else{
              //   alarm()
             //}

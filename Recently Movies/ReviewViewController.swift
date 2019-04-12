@@ -19,22 +19,28 @@ class ReviewViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(reviewList.count)
-        return reviewList.count
+        //print(reviewList.count)
+        if reviewList.count > 0 {
+            return reviewList.count
+        }else{
+            return 1
+        }
+        
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ReviewTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewTableViewCell
-        cell.viewName.text = reviewList[indexPath.row].author;
-        cell.viewReview.text = reviewList[indexPath.row].content;
+        if reviewList.count > 0 {
+            cell.viewName.text = reviewList[indexPath.row].author;
+            cell.viewReview.text = reviewList[indexPath.row].content;
+        }
+        else{
+            cell.viewName.text = "Author";
+            cell.viewReview.text = "No Review Available Now";
+        }
         return cell
     }
     

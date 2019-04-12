@@ -56,18 +56,10 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         Constants.MOVIE_ID = String(describing: movie.id!)
         
         DispatchQueue.main.async {
-            self.getTraillers()
-            self.getReviews()
+            self.getTraillers(URL_Trailler: Constants.URL_MOVIES)
+            self.getReviews(URL_Review: Constants.URL_REVIEWS)
         }
 
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return movie.movieTraillers.count
     }
     
     
@@ -91,21 +83,24 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     @IBAction func viewReviews(_ sender: Any) {
         let reviewsView : ReviewViewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsVCID") as! ReviewViewController
-        if reviewList.count == 0 {
-            reviewsView.reviewList = reviewList
-        }
-        else{
+       // if reviewList.count == 0 {
+            //reviewsView.reviewList = reviewList
+        //}
+//        else{
             reviewsView.reviewList = movie.movieReviews
-        }
+//        }
         self.navigationController?.pushViewController(reviewsView, animated: true);
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movie.movieTraillers.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TraillerCell", for: indexPath)
         cell.textLabel?.text = movie.movieTraillers[indexPath.row].name
-        print(movie.movieTraillers[indexPath.row].name ?? 0)
+        //print(movie.movieTraillers[indexPath.row].name ?? 0)
         cell.imageView?.sd_setImage(with: URL(string:""), placeholderImage: UIImage(named: "play-48"))
         return cell
     }
@@ -122,8 +117,8 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
     }
     
-    func getTraillers(){
-        Alamofire.request(Constants.URL_MOVIES).responseJSON { (response) in
+    func getTraillers(URL_Trailler:String){
+        Alamofire.request(URL_Trailler).responseJSON { (response) in
             if let responseValue = response.result.value as! [String: Any]? {
                 self.responseJson = responseValue["results"] as! [[String: Any]]
                 for item in self.responseJson{
@@ -132,7 +127,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     trailler.name = item["name"] as? String
                     self.movie.movieTraillers.append(trailler)
                     self.trailler.append(trailler)
-                    print("movieTraillers \(self.movie.movieTraillers.count)")
+                    //print("movieTraillers \(self.movie.movieTraillers.count)")
                 }
                 self.tabelView?.reloadData()
             }
@@ -141,8 +136,8 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     
 
     
-    func getReviews(){
-        Alamofire.request(Constants.URL_REVIEWS).responseJSON { (response) in
+    func getReviews(URL_Review:String){
+        Alamofire.request(URL_Review).responseJSON { (response) in
             if let responseValue = response.result.value as! [String: Any]? {
                 self.reviewJson = responseValue["results"] as! [[String: Any]]
                 for item in self.reviewJson{
@@ -150,9 +145,11 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     review.id = item["id"] as? String
                     review.author = item["author"] as? String
                     review.content = item["content"] as? String
+                    print(review.author ?? item["author"] ?? "author")
                     self.movie.movieReviews.append(review)
                     self.reviewList.append(review)
                     print("reviewList \(self.reviewList.count)")
+                     //print("review \(review.author)")
                 }
             }
         }
