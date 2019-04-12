@@ -48,7 +48,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         isExist = coreData.isExist(id: movie)
         
-        imagePoster.sd_setImage(with: URL(string:movie.image), placeholderImage: UIImage(named: "placeholder.png"))
+        imagePoster.sd_setImage(with: URL(string:movie.image), placeholderImage: UIImage(named: "Splash"))
         viewTitle.text = movie.title
         viewOverView.text = movie.overView
         viewRating.text = "Rating : ".appending(String(describing: movie.rating))
@@ -67,12 +67,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.movie != nil{
             return movie.movieTraillers.count
-        }
-        else{
-            return 0
-        }
     }
     
     
@@ -96,7 +91,12 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     @IBAction func viewReviews(_ sender: Any) {
         let reviewsView : ReviewViewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsVCID") as! ReviewViewController
-        reviewsView.reviewList = reviewList;
+        if reviewList.count == 0 {
+            reviewsView.reviewList = reviewList
+        }
+        else{
+            reviewsView.reviewList = movie.movieReviews
+        }
         self.navigationController?.pushViewController(reviewsView, animated: true);
         
     }
@@ -132,7 +132,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     trailler.name = item["name"] as? String
                     self.movie.movieTraillers.append(trailler)
                     self.trailler.append(trailler)
-                    print(self.movie.movieTraillers.count)
+                    print("movieTraillers \(self.movie.movieTraillers.count)")
                 }
                 self.tabelView?.reloadData()
             }
@@ -152,6 +152,7 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     review.content = item["content"] as? String
                     self.movie.movieReviews.append(review)
                     self.reviewList.append(review)
+                    print("reviewList \(self.reviewList.count)")
                 }
             }
         }
