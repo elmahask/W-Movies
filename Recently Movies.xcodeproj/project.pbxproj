@@ -134,8 +134,8 @@
 		CC7EBBB0224EAF1B00B7ACC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CC7EBBAA224EADBA00B7ACC5 /* CustomMoviesViewCell.swift */,
 				CC7EBB98224E9A7400B7ACC5 /* Main.storyboard */,
+				CC7EBBAA224EADBA00B7ACC5 /* CustomMoviesViewCell.swift */,
 				CC7EBBBD224EDA4C00B7ACC5 /* CustomCollectionViewCell.swift */,
 				CC779EF5225D06F8001D64A9 /* ReviewTableViewCell.swift */,
 			);

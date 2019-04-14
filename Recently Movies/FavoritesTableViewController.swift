@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class FavoritesTableViewController: UITableViewController {
+    @IBOutlet weak var SearchBar: UISearchBar!
 
     var managedContext : NSManagedObjectContext?
     var movirList : Array<Movie> = []

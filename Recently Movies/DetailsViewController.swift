@@ -34,8 +34,17 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var viewRating: UILabel!
     @IBOutlet weak var viewOverView: UITextView!
     @IBOutlet weak var viewYear: UILabel!
-    
+    @IBOutlet weak var star1: UIImageView!
+    @IBOutlet weak var star2: UIImageView!
+    @IBOutlet weak var star3: UIImageView!
+    @IBOutlet weak var star4: UIImageView!
+    @IBOutlet weak var star5: UIImageView!
 
+    let fullStarImage:  UIImage = UIImage(named: "Star-Fill")!
+    let halfStarImage:  UIImage = UIImage(named: "Star-Half")!
+    let emptyStarImage: UIImage = UIImage(named: "Star")!
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         if(isExist){
             let image = UIImage(named: "Star-Fill")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
@@ -55,6 +64,10 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         viewYear.text = "Relearse Year : ".appending(String(describing: movie.releaseYear))
         Constants.MOVIE_ID = String(describing: movie.id!)
         
+
+        for (index, imageView) in [star1, star2, star3, star4, star5].enumerated() {
+            imageView?.image = getStarImage(starNumber: Double(index + 1), forRating: Double(movie.rating)/2)
+        }
         DispatchQueue.main.async {
             self.getTraillers(URL_Trailler: Constants.URL_MOVIES)
             self.getReviews(URL_Review: Constants.URL_REVIEWS)
@@ -117,6 +130,16 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
     }
     
+    func getStarImage(starNumber: Double, forRating rating: Double) -> UIImage {
+        if rating >= starNumber {
+            return fullStarImage
+        } else if rating + 0.5 == starNumber {
+            return halfStarImage
+        } else {
+            return emptyStarImage
+        }
+    }
+    
     func getTraillers(URL_Trailler:String){
         Alamofire.request(URL_Trailler).responseJSON { (response) in
             if let responseValue = response.result.value as! [String: Any]? {
@@ -154,6 +177,8 @@ class DetailsViewController: UIViewController,UITableViewDataSource,UITableViewD
             }
         }
     }
+    
 
 }
+
 
